@@ -1,0 +1,33 @@
+{
+  "name": "lrc-ast",
+  "version": "1.0.0",
+  "description": "Building AST of LRC file",
+  "main": "out/index.js",
+  "scripts": {
+    "test": "mocha out/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrSjimo/lrc-ast.git"
+  },
+  "keywords": [
+    "ast",
+    "lrc",
+    "lyric",
+    "parse"
+  ],
+  "author": "Crindzebra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CrSjimo/lrc-ast/issues"
+  },
+  "homepage": "https://github.com/CrSjimo/lrc-ast#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "typedoc": "^0.17.4",
+    "typescript": "^3.8.3"
+  }
+}

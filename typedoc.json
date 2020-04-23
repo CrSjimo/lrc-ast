@@ -1,0 +1,4 @@
+{
+    "exclude":["src/utils/**/*.ts","src/test/**/*.ts"],
+    "mode": "file"
+}
