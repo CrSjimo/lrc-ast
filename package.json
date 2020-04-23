@@ -1,7 +1,7 @@
 {
   "name": "lrc-ast",
   "version": "1.0.0",
-  "description": "Building AST of LRC file",
+  "description": "Building AST and JS Object from LRC file, and create LRC file from AST.",
   "main": "out/index.js",
   "scripts": {
     "test": "mocha out/test"

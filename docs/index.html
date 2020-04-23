@@ -67,13 +67,52 @@
 				<a href="#lrc-ast" id="lrc-ast" style="color: inherit; text-decoration: none;">
 					<h1>LRC-AST</h1>
 				</a>
-				<p>Building AST(Abstract Syntax Tree) of LRC file.</p>
+				<p>Building AST(Abstract Syntax Tree) and JS Object from LRC file, and create LRC file from AST.</p>
 				<a href="#get-started" id="get-started" style="color: inherit; text-decoration: none;">
 					<h2>Get Started</h2>
 				</a>
 				<p>Install via npm:</p>
 				<pre><code>npm <span class="hljs-keyword">install</span> lrc-ast</code></pre><p>Use:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lrc-ast'</span>);</code></pre>
+				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+					<h2>Example</h2>
+				</a>
+				<p>Original LRC file:</p>
+				<pre><code class="language-lrc">[00:00.00]
+[00:01.15]aaaaa
+[00:15.50]bbbbb
+[03:35.13]ccccc
+[03:40.00]</code></pre>
+				<p>AST:</p>
+				<p>Fully compliant the content of original LRC file, including the row and column number.</p>
+				<p><a href="src/test/example.json">example.json</a></p>
+				<p>Lyric Object:</p>
+				<p>Much more compact JS object than AST tree.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"tags"</span>: {},
+  <span class="hljs-attr">"lyrics"</span>: [
+    {
+      <span class="hljs-attr">"time"</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">""</span>
+    },
+    {
+      <span class="hljs-attr">"time"</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0.15</span>],
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"aaaaa"</span>
+    },
+    {
+      <span class="hljs-attr">"time"</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">15</span>,<span class="hljs-number">0.5</span>],
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"bbbbb"</span>
+    },
+    {
+      <span class="hljs-attr">"time"</span>: [<span class="hljs-number">3</span>,<span class="hljs-number">35</span>,<span class="hljs-number">0.13</span>],
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"ccccc"</span>
+    },
+    {
+      <span class="hljs-attr">"time"</span>: [<span class="hljs-number">3</span>,<span class="hljs-number">40</span>,<span class="hljs-number">0</span>],
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">""</span>
+    }
+  ]
+}</code></pre>
 				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
 					<h2>API</h2>
 				</a>
@@ -101,10 +140,16 @@
 						<a href="interfaces/abstractnode.html" class="tsd-kind-icon">Abstract<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/createlrcoptions.html" class="tsd-kind-icon">Create<wbr>Lrc<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/filenode.html" class="tsd-kind-icon">File<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/lyricnode.html" class="tsd-kind-icon">Lyric<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/lyricobject.html" class="tsd-kind-icon">Lyric<wbr>Object</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/millisecondnode.html" class="tsd-kind-icon">Millisecond<wbr>Node</a>
@@ -131,10 +176,25 @@
 						<a href="interfaces/tagvaluenode.html" class="tsd-kind-icon">Tag<wbr>Value<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/tags.html" class="tsd-kind-icon">Tags</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/textnode.html" class="tsd-kind-icon">Text<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/timenode.html" class="tsd-kind-icon">Time<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#lyricline" class="tsd-kind-icon">Lyric<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#timelabel" class="tsd-kind-icon">Time<wbr>Label</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createlrc" class="tsd-kind-icon">create<wbr>Lrc</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createobject" class="tsd-kind-icon">create<wbr>Object</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#parser" class="tsd-kind-icon">parser</a>

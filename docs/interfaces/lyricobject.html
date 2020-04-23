@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TagKeyNode | lrc-ast</title>
+	<title>LyricObject | lrc-ast</title>
 	<meta name="description" content="Documentation for lrc-ast">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tagkeynode.html">TagKeyNode</a>
+					<a href="lyricobject.html">LyricObject</a>
 				</li>
 			</ul>
-			<h1>Interface TagKeyNode</h1>
+			<h1>Interface LyricObject</h1>
 		</div>
 	</div>
 </header>
@@ -69,21 +69,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Node of the key in tag label.</p>
+						<p>Represents the lyric object.</p>
 					</div>
-					<p>For example, <code>ar</code> in <code>[ar:crindzebra]</code> is the tag key.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="abstractnode.html" class="tsd-signature-type">AbstractNode</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">TagKeyNode</span>
-							</li>
-						</ul>
+						<span class="target">LyricObject</span>
 					</li>
 				</ul>
 			</section>
@@ -94,9 +88,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tagkeynode.html#position" class="tsd-kind-icon">position</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="tagkeynode.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tagkeynode.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="lyricobject.html#lyrics" class="tsd-kind-icon">lyrics</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="lyricobject.html#tags" class="tsd-kind-icon">tags</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,35 +97,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="position" class="tsd-anchor"></a>
-					<h3>position</h3>
-					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <a href="position.html" class="tsd-signature-type">Position</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="lyrics" class="tsd-anchor"></a>
+					<h3>lyrics</h3>
+					<div class="tsd-signature tsd-kind-icon">lyrics<span class="tsd-signature-symbol">:</span> <a href="../globals.html#lyricline" class="tsd-signature-type">LyricLine</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="abstractnode.html">AbstractNode</a>.<a href="abstractnode.html#position">position</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/CrSjimo/lrc-ast/blob/9dd6c2a/src/declarations/LrcAstNode.ts#L15">src/declarations/LrcAstNode.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"tagKey"</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides <a href="abstractnode.html">AbstractNode</a>.<a href="abstractnode.html#type">type</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/CrSjimo/lrc-ast/blob/9dd6c2a/src/declarations/LrcAstNode.ts#L24">src/declarations/LrcAstNode.ts:24</a></li>
+							<li>Defined in src/declarations/LyricObject.ts:15</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tags" class="tsd-anchor"></a>
+					<h3>tags</h3>
+					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <a href="tags.html" class="tsd-signature-type">Tags</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CrSjimo/lrc-ast/blob/9dd6c2a/src/declarations/LrcAstNode.ts#L25">src/declarations/LrcAstNode.ts:25</a></li>
+							<li>Defined in src/declarations/LyricObject.ts:14</li>
 						</ul>
 					</aside>
 				</section>
@@ -163,9 +144,21 @@
 					<li class=" tsd-kind-interface">
 						<a href="lyricnode.html" class="tsd-kind-icon">Lyric<wbr>Node</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="lyricobject.html" class="tsd-kind-icon">Lyric<wbr>Object</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="lyricobject.html#lyrics" class="tsd-kind-icon">lyrics</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="lyricobject.html#tags" class="tsd-kind-icon">tags</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="millisecondnode.html" class="tsd-kind-icon">Millisecond<wbr>Node</a>
 					</li>
@@ -181,24 +174,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="secondnode.html" class="tsd-kind-icon">Second<wbr>Node</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="tagkeynode.html" class="tsd-kind-icon">Tag<wbr>Key<wbr>Node</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="tagkeynode.html#position" class="tsd-kind-icon">position</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="tagkeynode.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tagkeynode.html#value" class="tsd-kind-icon">value</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="tagnode.html" class="tsd-kind-icon">Tag<wbr>Node</a>
 					</li>

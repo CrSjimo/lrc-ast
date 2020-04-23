@@ -86,7 +86,7 @@ function parseLine(fileNode:FileNode){
     increase();
     if(isDigit(lrcStr[i])){
         let lyricNode = createNode('lyric',{
-            row,col,index:i,
+            row,col,index:i-1,
         });
         let timeNode = createNode('time',{
             row,col,index: i,
@@ -100,7 +100,7 @@ function parseLine(fileNode:FileNode){
         parseText(textNode);
     }else if(isAlphabet(lrcStr[i])){
         let tagNode = createNode('tag',{
-            row,col,index:i,
+            row,col,index:i-1,
         });
         fileNode.children.push(tagNode);
         parseTag(tagNode);
@@ -114,6 +114,9 @@ function parseLine(fileNode:FileNode){
  * @throws UnexpectedTokenError
  */
 export function parser(file:string){
+    i = 0;
+    row = 1;
+    col = 1;
     lrcStr = file;
     let fileNode:FileNode = createNode('file',{
             row,col,index: i,
