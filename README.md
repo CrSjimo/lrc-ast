@@ -18,7 +18,7 @@ const parser = require('lrc-ast');
 
 ## API
 
-[API Docs](https://crsjimo.github.io/lrc-ast/index,html)
+[API Docs](https://crsjimo.github.io/lrc-ast/index.html)
 
 ## License
 
