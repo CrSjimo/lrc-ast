@@ -4,7 +4,10 @@
   "description": "Building AST and JS Object from LRC file, and create LRC file from AST.",
   "main": "out/index.js",
   "scripts": {
-    "test": "mocha out/test"
+    "test": "mocha out/test",
+    "prepublishOnly": "tsc -p ./",
+    "doc": "npx typedoc",
+    "watch": "tsc -w ./"
   },
   "repository": {
     "type": "git",

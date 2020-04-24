@@ -13,7 +13,7 @@ npm install lrc-ast
 Use:
 
 ```javascript
-const parser = require('lrc-ast');
+const { parser , createObject , createLrc } = require('lrc-ast');
 ```
 
 ## Example
