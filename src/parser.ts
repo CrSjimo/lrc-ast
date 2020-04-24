@@ -14,22 +14,59 @@ function increase(){
     col++;
 }
 
+/**@ignore */
+function nowPos():Position{
+    return {row,col,index:i};
+}
+
+/**@ignore */
+function checkOverFlow(expected?:string){
+    if(i>=lrcStr.length){
+        throw new UnexpectedTokenError(nowPos(),'unexpected end of file',expected);
+    }
+}
+
 
 /**@ignore */
 function parseTime(timeNode:TimeNode){
     let buf:string = '';
+    let colonRead = false;
+    let dotRead = false;
     for(;;){
+
+        if(!colonRead){
+            checkOverFlow(`a digit or ':'`);
+        }else if(!dotRead){
+            checkOverFlow(`a digit or '.'`);
+        }else{
+            checkOverFlow(`a digit or ']'`);
+        }
+
         if(lrcStr[i]==':'){
+            buf=(buf.length==0 ? '0' : buf);
             timeNode.children[0]=createNode('minute',{
                 row,col:col-buf.length,index:i-buf.length,
             },parseInt(buf));
             buf='';
+            colonRead = true;
         }else if(lrcStr[i]=='.'){
+            if(!colonRead){
+                throw new UnexpectedTokenError(nowPos(),`'.'`,`':'`);
+            }
+            buf=(buf.length==0 ? '0' : buf);
             timeNode.children[1]=createNode('second',{
                 row,col:col-buf.length,index:i-buf.length,
             },parseInt(buf));
             buf='';
+            dotRead = true;
         }else if(lrcStr[i]==']'){
+            if(!colonRead){
+                throw new UnexpectedTokenError(nowPos(),`']'`,`':'`);
+            }
+            if(!dotRead){
+                throw new UnexpectedTokenError(nowPos(),`']'`,`'.'`);
+            }
+            buf=(buf.length==0 ? '0' : buf);
             timeNode.children[2]=createNode('millisecond',{
                 row,col:col-buf.length,index:i-buf.length,
             },parseFloat('0.'+buf));
@@ -38,9 +75,7 @@ function parseTime(timeNode:TimeNode){
         }else if(isDigit(lrcStr[i])){
             buf+=lrcStr[i];
         }else{
-            throw new UnexpectedTokenError({
-                row,col,index: i,
-            },`'${escape(lrcStr[i])}'`,`an integer`)
+            throw new UnexpectedTokenError(nowPos(),`'${escape(lrcStr[i])}'`,`an integer`)
         }
         increase();
     }
@@ -58,24 +93,37 @@ function parseText(textNode:TextNode){
 /**@ignore */
 function parseTag(tagNode:TagNode){
     let buf = '';
+    let colonRead = false;
     for(;;){
+
+        if(!colonRead){
+            checkOverFlow(`a letter or ':'`);
+        }else{
+            checkOverFlow(`tag value or ']'`);
+        }
+
         if(lrcStr[i]==':'){
             tagNode.children[0]=createNode('tagKey',{
                 row,col:col-buf.length,index:i-buf.length,
             },buf);
             buf='';
+            colonRead = true;
         }else if(lrcStr[i]==']'){
+            if(!colonRead){
+                throw new UnexpectedTokenError(nowPos(),`']'`,`':'`);
+            }
             tagNode.children[1]=createNode('tagValue',{
                 row,col:col-buf.length,index:i-buf.length,
             },buf);
             increase();
             return;
         }else if(NotNewLineChar(lrcStr[i])){
+            if(!colonRead && !isAlphabet(lrcStr[i])){
+                throw new UnexpectedTokenError(nowPos(),`'${lrcStr[i]}'`,'a letter');
+            }
             buf+=lrcStr[i];
         }else{
-            throw new UnexpectedTokenError({
-                row,col,index:i,
-            },`${escape(lrcStr[i])}`,'a non-newline character');
+            throw new UnexpectedTokenError(nowPos(),`${escape(lrcStr[i])}`,'a non-newline character');
         }
         increase();
     }
@@ -84,16 +132,13 @@ function parseTag(tagNode:TagNode){
 /**@ignore */
 function parseLine(fileNode:FileNode){
     increase();
+    checkOverFlow('a digit or a letter');
     if(isDigit(lrcStr[i])){
         let lyricNode = createNode('lyric',{
             row,col,index:i-1,
         });
-        let timeNode = createNode('time',{
-            row,col,index: i,
-        });
-        let textNode = createNode('text',{
-            row,col,index:i,
-        },'');
+        let timeNode = createNode('time',nowPos());
+        let textNode = createNode('text',nowPos(),'');
         lyricNode.children = [timeNode,textNode];
         fileNode.children.push(lyricNode);
         parseTime(timeNode);
@@ -104,6 +149,8 @@ function parseLine(fileNode:FileNode){
         });
         fileNode.children.push(tagNode);
         parseTag(tagNode);
+    }else{
+
     }
 }
 
@@ -118,9 +165,7 @@ export function parser(file:string){
     row = 1;
     col = 1;
     lrcStr = file;
-    let fileNode:FileNode = createNode('file',{
-            row,col,index: i,
-        },
+    let fileNode:FileNode = createNode('file',nowPos(),
     );
     while(i<lrcStr.length){
         if(lrcStr[i]=='\n'){
@@ -132,9 +177,7 @@ export function parser(file:string){
         }else if(isSpace(lrcStr[i])){
             increase();
         }else{
-            throw new UnexpectedTokenError({
-                row,col,index: i,
-            },`'${escape(lrcStr[i])}'`,`'['`);
+            throw new UnexpectedTokenError(nowPos(),`'${escape(lrcStr[i])}'`,`'['`);
         }
     }
     return fileNode;

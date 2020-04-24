@@ -1,4 +1,4 @@
-import parser from ".."
+import {parser} from ".."
 import { createObject } from "../createObject";
 
 let lrc=`[00:00.00]

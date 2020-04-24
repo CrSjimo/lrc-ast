@@ -1,5 +1,5 @@
 import { createObject } from "../createObject"
-import parser from ".."
+import {parser} from ".."
 import { createLrc } from "../createLrc";
 
 let lyric = `

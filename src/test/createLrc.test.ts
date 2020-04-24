@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import { createLrc } from '../createLrc';
-import parser from '..';
+import {parser} from '..';
 import { createObject } from '../createObject';
 let lyric = `
 [00:00.00]
